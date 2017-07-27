@@ -1,7 +1,6 @@
 {
-  "name": "vex-garden-web",
+  "name": "garden-dashboard",
   "version": "0.0.1",
-  "license": "MIT",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
