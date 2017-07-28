@@ -41,7 +41,7 @@ export class WeekComponent implements OnInit {
 
   private fetchData(): void {
 
-    this.http.get('http://localhost:30010/temperature/week')
+    this.http.get('http://192.168.1.109:30010/temperature/week')
               .map((res: Response) => res.json())
               .catch((error: any) => Observable.throw(error.json().error || 'Server error'))
               .subscribe((data) => {
