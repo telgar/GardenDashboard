@@ -7,6 +7,7 @@ import { ChartsModule } from 'ng2-charts';
 
 import { AppComponent } from './app.component';
 import { NavComponent } from './nav/nav.component';
+import { TimeSeriesComponent } from './graphs/time-series.component';
 import { HourComponent } from './graphs/hour/hour.component';
 import { DayComponent } from './graphs/day/day.component';
 import { WeekComponent } from './graphs/week/week.component';
@@ -27,6 +28,7 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     NavComponent,
+    TimeSeriesComponent,
     HourComponent,
     DayComponent,
     WeekComponent,

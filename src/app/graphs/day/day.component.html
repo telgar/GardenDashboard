@@ -1,9 +1,4 @@
-<div>
-    <canvas baseChart width="800" height="400"
-                    [datasets]="lineChartData"
-                    [labels]="lineChartLabels"
-                    [options]="lineChartOptions"
-                    [colors]="lineChartColors"
-                    [legend]="lineChartLegend"
-                    [chartType]="lineChartType"></canvas>
-</div>
+<app-time-series-graph [temperatureUrl]="'http://192.168.1.109:30010/temperature/day'"
+                       [soilUrl]="'http://192.168.1.109:30010/soil/day'"
+                       [humidityUrl]="'http://192.168.1.109:30010/humidity/day'">
+</app-time-series-graph>
