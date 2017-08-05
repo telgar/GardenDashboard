@@ -15,13 +15,15 @@ import { AllTimeComponent } from './graphs/all-time/all-time.component';
 import { TemperatureComponent } from './gauges/temperature/temperature.component';
 import { SoilMoistureComponent } from './gauges/soil-moisture/soil-moisture.component';
 import { HumidityComponent } from './gauges/humidity/humidity.component';
+import { PictureComponent } from './camera/picture.component';
 
 const appRoutes: Routes = [
-  { path: 'stats/hour', component: HourComponent },
-  { path: 'stats/day', component: DayComponent },
-  { path: 'stats/week', component: WeekComponent },
-  { path: 'stats/all-time', component: AllTimeComponent },
-  { path: '**', component: AllTimeComponent }
+  { path: 'hour', component: HourComponent },
+  { path: 'day', component: DayComponent },
+  { path: 'week', component: WeekComponent },
+  { path: 'all-time', component: AllTimeComponent },
+  { path: 'picture', component: PictureComponent },
+  { path: '**', component: HourComponent }
 ];
 
 @NgModule({
@@ -35,7 +37,8 @@ const appRoutes: Routes = [
     AllTimeComponent,
     TemperatureComponent,
     SoilMoistureComponent,
-    HumidityComponent
+    HumidityComponent,
+    PictureComponent
   ],
   imports: [
     BrowserModule,

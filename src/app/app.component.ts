@@ -7,10 +7,4 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
 
-  cacheBuster: string ;
-
-  constructor() {
-
-    this.cacheBuster = new Date().getTime().toString();
-  }
 }
