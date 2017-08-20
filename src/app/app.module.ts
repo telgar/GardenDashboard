@@ -14,7 +14,6 @@ import { WeekComponent } from './graphs/week/week.component';
 import { AllTimeComponent } from './graphs/all-time/all-time.component';
 import { TemperatureComponent } from './gauges/temperature/temperature.component';
 import { SoilMoistureComponent } from './gauges/soil-moisture/soil-moisture.component';
-import { HumidityComponent } from './gauges/humidity/humidity.component';
 import { PictureComponent } from './camera/picture.component';
 
 const appRoutes: Routes = [
@@ -37,7 +36,6 @@ const appRoutes: Routes = [
     AllTimeComponent,
     TemperatureComponent,
     SoilMoistureComponent,
-    HumidityComponent,
     PictureComponent
   ],
   imports: [

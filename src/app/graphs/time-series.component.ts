@@ -20,14 +20,14 @@ const chartColors = {
 export class TimeSeriesComponent implements OnInit {
 
   @Input() temperatureUrl: string;
-  @Input() soilUrl: string;
-  @Input() humidityUrl: string;
+  @Input() soil1Url: string;
+  @Input() soil2Url: string;
 
   // lineChart
   public lineChartData: Array<any> = [
     {data: [], label: 'Temperature C', borderColor: chartColors.red, backgroundColor: chartColors.red, yAxisID: 'y-axis-1' },
-    {data: [], label: 'Soil Moisture %', borderColor: chartColors.blue, backgroundColor: chartColors.blue, yAxisID: 'y-axis-2'},
-    {data: [], label: 'Air Humidity %', borderColor: chartColors.grey, backgroundColor: chartColors.grey, yAxisID: 'y-axis-2'}
+    {data: [], label: 'Soil 1 Moisture %', borderColor: chartColors.blue, backgroundColor: chartColors.blue, yAxisID: 'y-axis-2'},
+    {data: [], label: 'Soil 2 Moisture %', borderColor: chartColors.green, backgroundColor: chartColors.green, yAxisID: 'y-axis-2'}
   ];
   public lineChartLabels: Array<any> = [];
   public lineChartOptions: any = {
@@ -65,7 +65,15 @@ export class TimeSeriesComponent implements OnInit {
                 this.lineChartData[0].data = data.map((o) => o.celsius);
               });
 
-    this.http.get(this.soilUrl)
+    this.http.get(this.soil1Url)
+             .map((res: Response) => res.json())
+             .catch((error: any) => Observable.throw(error.json().error || 'Server error'))
+             .subscribe((data) => {
+                this.lineChartData[1].data = data.map((o) => o.moisture);
+                this.lineChartLabels = data.map((o) => o.label);
+              });
+
+    this.http.get(this.soil2Url)
              .map((res: Response) => res.json())
              .catch((error: any) => Observable.throw(error.json().error || 'Server error'))
              .subscribe((data) => {
