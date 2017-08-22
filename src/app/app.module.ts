@@ -15,6 +15,7 @@ import { AllTimeComponent } from './graphs/all-time/all-time.component';
 import { TemperatureComponent } from './gauges/temperature/temperature.component';
 import { SoilMoistureComponent } from './gauges/soil-moisture/soil-moisture.component';
 import { PictureComponent } from './camera/picture.component';
+import { LogsComponent } from './logs/logs.component';
 
 const appRoutes: Routes = [
   { path: 'hour', component: HourComponent },
@@ -22,6 +23,7 @@ const appRoutes: Routes = [
   { path: 'week', component: WeekComponent },
   { path: 'all-time', component: AllTimeComponent },
   { path: 'picture', component: PictureComponent },
+  { path: 'logs', component: LogsComponent },
   { path: '**', component: HourComponent }
 ];
 
@@ -36,7 +38,8 @@ const appRoutes: Routes = [
     AllTimeComponent,
     TemperatureComponent,
     SoilMoistureComponent,
-    PictureComponent
+    PictureComponent,
+    LogsComponent
   ],
   imports: [
     BrowserModule,
