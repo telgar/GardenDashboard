@@ -70,14 +70,13 @@ export class TimeSeriesComponent implements OnInit {
              .catch((error: any) => Observable.throw(error.json().error || 'Server error'))
              .subscribe((data) => {
                 this.lineChartData[1].data = data.map((o) => o.moisture);
-                this.lineChartLabels = data.map((o) => o.label);
               });
 
     this.http.get(this.soil2Url)
              .map((res: Response) => res.json())
              .catch((error: any) => Observable.throw(error.json().error || 'Server error'))
              .subscribe((data) => {
-                this.lineChartData[1].data = data.map((o) => o.moisture);
+                this.lineChartData[2].data = data.map((o) => o.moisture);
                 this.lineChartLabels = data.map((o) => o.label);
               });
   }
