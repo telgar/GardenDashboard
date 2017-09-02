@@ -8,6 +8,7 @@ import { ChartsModule } from 'ng2-charts';
 import { AppComponent } from './app.component';
 import { NavComponent } from './nav/nav.component';
 import { TimeSeriesComponent } from './graphs/time-series.component';
+import { HoursComponent } from './graphs/12hours/12hours.component';
 import { HourComponent } from './graphs/hour/hour.component';
 import { DayComponent } from './graphs/day/day.component';
 import { WeekComponent } from './graphs/week/week.component';
@@ -18,6 +19,7 @@ import { PictureComponent } from './camera/picture.component';
 import { LogsComponent } from './logs/logs.component';
 
 const appRoutes: Routes = [
+  { path: '12hours', component: HoursComponent },
   { path: 'hour', component: HourComponent },
   { path: 'day', component: DayComponent },
   { path: 'week', component: WeekComponent },
@@ -32,6 +34,7 @@ const appRoutes: Routes = [
     AppComponent,
     NavComponent,
     TimeSeriesComponent,
+    HoursComponent,
     HourComponent,
     DayComponent,
     WeekComponent,
