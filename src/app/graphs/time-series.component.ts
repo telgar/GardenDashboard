@@ -10,7 +10,8 @@ const chartColors = {
     green: 'rgb(75, 192, 192)',
     blue: 'rgb(54, 162, 235)',
     purple: 'rgb(153, 102, 255)',
-    grey: 'rgb(201, 203, 207)'
+    grey: 'rgb(201, 203, 207)',
+    black: 'rgb(0,0,0)'
   };
 
 @Component({
@@ -24,11 +25,32 @@ export class TimeSeriesComponent implements OnInit {
   @Input() soil2Url: string;
 
   public lineChartData: Array<any> = [
-    {data: [], label: 'Temperature C', borderColor: chartColors.red, backgroundColor: chartColors.red, yAxisID: 'y-axis-1' },
-    {data: [], label: 'Soil 1 Moisture %', borderColor: chartColors.blue, backgroundColor: chartColors.blue, yAxisID: 'y-axis-2'},
+    {data: [], label: 'Temperature C', yAxisID: 'y-axis-1' },
+    {data: [], label: 'Soil 1 Moisture %', yAxisID: 'y-axis-2'},
+    {data: [], label: 'Day / Night', fill: true, pointRadius: 0, pointHoverRadius: 0, yAxisID: 'y-axis-2'},
     //{data: [], label: 'Soil 2 Moisture %', borderColor: chartColors.green, backgroundColor: chartColors.green, yAxisID: 'y-axis-2'}
   ];
   public lineChartLabels: Array<any> = [];
+  public lineColors: Array<any> = [
+    { // red
+      backgroundColor: 'rgba(255, 99, 132,0.2)',
+      borderColor: 'rgba(255, 99, 132,1)'
+    },
+    { // blue
+      backgroundColor: 'rgba(54, 162, 235,0.2)',
+      borderColor: 'rgba(54, 162, 235,1)'
+    },
+    /*
+    { // green
+      backgroundColor: 'rgba(75, 192, 192,0.2)',
+      borderColor: 'rgba(75, 192, 192,1)'
+    },
+    */
+    { // grey
+      backgroundColor: 'rgba(148,159,177,0.2)',
+      borderColor: 'rgba(148,159,177,1)'
+    }
+  ];
   public lineChartOptions: any = {
     responsive: true,
     scales: {
@@ -69,6 +91,17 @@ export class TimeSeriesComponent implements OnInit {
              .catch((error: any) => Observable.throw(error.json().error || 'Server error'))
              .subscribe((data) => {
                 this.lineChartData[1].data = data.map((o) => o.moisture);
+                this.lineChartData[2].data = data.map((o) => {
+                  const hours = new Date(o.timestamp).getHours();
+
+                  if (hours < 7) {
+                    return 100;
+                  } else if (hours > 19) {
+                    return 100;
+                  }
+
+                  return 0;
+                });
                 this.lineChartLabels = data.map((o) => o.label);
               });
 /*
