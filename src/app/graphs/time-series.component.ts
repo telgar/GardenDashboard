@@ -27,8 +27,8 @@ export class TimeSeriesComponent implements OnInit {
   public lineChartData: Array<any> = [
     {data: [], label: 'Temperature C', yAxisID: 'y-axis-1' },
     {data: [], label: 'Soil 1 Moisture %', yAxisID: 'y-axis-2'},
-    {data: [], label: 'Day / Night', fill: true, pointRadius: 0, pointHoverRadius: 0, yAxisID: 'y-axis-2'},
-    //{data: [], label: 'Soil 2 Moisture %', borderColor: chartColors.green, backgroundColor: chartColors.green, yAxisID: 'y-axis-2'}
+    {data: [], label: 'Soil 2 Moisture %', borderColor: chartColors.green, backgroundColor: chartColors.green, yAxisID: 'y-axis-2'},
+    {data: [], label: 'Day / Night', fill: true, pointRadius: 0, pointHoverRadius: 0, yAxisID: 'y-axis-2'}
   ];
   public lineChartLabels: Array<any> = [];
   public lineColors: Array<any> = [
@@ -40,12 +40,10 @@ export class TimeSeriesComponent implements OnInit {
       backgroundColor: 'rgba(54, 162, 235,0.2)',
       borderColor: 'rgba(54, 162, 235,1)'
     },
-    /*
     { // green
       backgroundColor: 'rgba(75, 192, 192,0.2)',
       borderColor: 'rgba(75, 192, 192,1)'
     },
-    */
     { // grey
       backgroundColor: 'rgba(148,159,177,0.2)',
       borderColor: 'rgba(148,159,177,1)'
@@ -85,13 +83,19 @@ export class TimeSeriesComponent implements OnInit {
              .subscribe((data) => {
                 this.lineChartData[0].data = data.map((o) => o.celsius);
               });
-
+    this.http.get(this.soil2Url)
+              .map((res: Response) => res.json())
+              .catch((error: any) => Observable.throw(error.json().error || 'Server error'))
+              .subscribe((data) => {
+                 this.lineChartData[2].data = data.map((o) => o.moisture);
+                 //this.lineChartLabels = data.map((o) => o.label);
+               });
     this.http.get(this.soil1Url)
              .map((res: Response) => res.json())
              .catch((error: any) => Observable.throw(error.json().error || 'Server error'))
              .subscribe((data) => {
                 this.lineChartData[1].data = data.map((o) => o.moisture);
-                this.lineChartData[2].data = data.map((o) => {
+                this.lineChartData[3].data = data.map((o) => {
                   const hours = new Date(o.timestamp).getHours();
 
                   if (hours < 7) {
@@ -104,14 +108,5 @@ export class TimeSeriesComponent implements OnInit {
                 });
                 this.lineChartLabels = data.map((o) => o.label);
               });
-/*
-    this.http.get(this.soil2Url)
-             .map((res: Response) => res.json())
-             .catch((error: any) => Observable.throw(error.json().error || 'Server error'))
-             .subscribe((data) => {
-                this.lineChartData[2].data = data.map((o) => o.moisture);
-                this.lineChartLabels = data.map((o) => o.label);
-              });
-*/
   }
 }

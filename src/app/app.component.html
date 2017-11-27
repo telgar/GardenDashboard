@@ -1,17 +1,20 @@
 <div class="container">
-    
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-12">
+            <app-time></app-time>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
             <app-temperature></app-temperature>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-4">
             <app-soil-moisture [instance]="1"></app-soil-moisture>
         </div>
-        <!--
         <div class="col-md-4">
             <app-soil-moisture [instance]="2"></app-soil-moisture>
         </div>
-        -->
     </div>
 
     <div class="row">

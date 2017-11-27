@@ -13,6 +13,7 @@ import { HourComponent } from './graphs/hour/hour.component';
 import { DayComponent } from './graphs/day/day.component';
 import { WeekComponent } from './graphs/week/week.component';
 import { AllTimeComponent } from './graphs/all-time/all-time.component';
+import { TimeComponent } from './gauges/time/time.component';
 import { TemperatureComponent } from './gauges/temperature/temperature.component';
 import { SoilMoistureComponent } from './gauges/soil-moisture/soil-moisture.component';
 import { PictureComponent } from './camera/picture.component';
@@ -39,6 +40,7 @@ const appRoutes: Routes = [
     DayComponent,
     WeekComponent,
     AllTimeComponent,
+    TimeComponent,
     TemperatureComponent,
     SoilMoistureComponent,
     PictureComponent,
