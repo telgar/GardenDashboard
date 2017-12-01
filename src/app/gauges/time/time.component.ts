@@ -11,6 +11,7 @@ import {Observable} from 'rxjs/Rx';
 export class TimeComponent implements OnInit {
 
   timestamp: string = '???';
+  watered: string = '???';
 
   constructor(private http: Http) { }
 
@@ -30,6 +31,17 @@ export class TimeComponent implements OnInit {
               .catch((error: any) => Observable.throw(error || 'Server error'))
               .subscribe((data) => {
                 this.timestamp = data;
+              });
+
+    this.http.get('http://192.168.1.109:30010/watered')
+              .map((res: Response) => res.json())
+              .catch((error: any) => Observable.throw(error || 'Server error'))
+              .subscribe((data) => {
+                if (data && data.length === 1) {
+                  this.watered = data;
+                } else {
+                  this.watered = 'No record.';
+                }
               });
   }
 }
